@@ -10,10 +10,16 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.dao.InfoDao;
 import com.example.demo.dto.LawMakerDto;
+import com.example.demo.dto.LoginDto;
 
 @Controller
 public class TestController2 {
@@ -38,6 +44,42 @@ public class TestController2 {
 		System.out.println("committee");
 		
 		return "committee/committee";
+	}
+	
+	@RequestMapping(value = "/login")
+	public String login(Model model) throws Exception {
+		System.out.println("login");
+		
+		return "login/login";
+	}
+	
+	@RequestMapping(value = "/loginAjax")
+	public String loginAjax(Model model) throws Exception {
+		System.out.println("loginAjax");
+		
+		return "login/loginAjax";
+	}
+	
+	@RequestMapping(value = "/loginResult", method=RequestMethod.POST)
+	public String loginResult(LoginDto param, Model model) throws Exception {
+		
+		int login = 0;
+		
+		try {
+			login = infodao.login(param);
+			
+			if(login == 1) {
+				System.out.println("아이디 있음");
+			} else {
+				System.out.println("아이디 없음");
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+		model.addAttribute("param", login);
+		
+		return "login/loginResult";
 	}
 
 	@RequestMapping(value = "/committeeDb")

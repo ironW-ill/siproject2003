@@ -20,6 +20,11 @@
 
 	<dependencies>
 	
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+		
 		<!-- json -->
 		<dependency>
 		    <groupId>com.googlecode.json-simple</groupId>
