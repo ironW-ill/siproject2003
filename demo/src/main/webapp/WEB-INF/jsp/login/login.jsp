@@ -9,8 +9,6 @@
 </head>
 <body>
 	<h1>login page</h1>
-	<% String name = request.getParameter("name");%>
-	<p><%=param%></p>
 	<form action="/loginResult" method="post">
 		<input type="text" name="username">
 		<input type="text" name="password">
